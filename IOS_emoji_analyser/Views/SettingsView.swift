@@ -96,7 +96,7 @@ struct HelpView: View {
                     
                     Text("2. 开始监听")
                         .font(.headline)
-                    Text("点击"开始监听"按钮，应用将实时分析您的语音并显示对应的情绪emoji。")
+                    Text("点击\"开始监听\"按钮，应用将实时分析您的语音并显示对应的情绪emoji。")
                         .foregroundColor(.secondary)
                     
                     Text("3. 查看历史")
@@ -106,7 +106,7 @@ struct HelpView: View {
                     
                     Text("4. 停止监听")
                         .font(.headline)
-                    Text("完成后点击"停止监听"按钮即可停止分析。")
+                    Text("完成后点击\"停止监听\"按钮即可停止分析。")
                         .foregroundColor(.secondary)
                 }
             }

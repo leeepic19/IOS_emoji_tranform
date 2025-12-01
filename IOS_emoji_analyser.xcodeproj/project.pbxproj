@@ -14,6 +14,14 @@
 		46B793F52EDD622400EC2137 /* IOS_emoji_analyserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B793F42EDD622400EC2137 /* IOS_emoji_analyserTests.swift */; };
 		46B793FF2EDD622400EC2137 /* IOS_emoji_analyserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B793FE2EDD622400EC2137 /* IOS_emoji_analyserUITests.swift */; };
 		46B794012EDD622400EC2137 /* IOS_emoji_analyserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B794002EDD622400EC2137 /* IOS_emoji_analyserUITestsLaunchTests.swift */; };
+		46B794122EDD6CBA00EC2137 /* EmojiMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B7940F2EDD6CBA00EC2137 /* EmojiMapper.swift */; };
+		46B794132EDD6CBA00EC2137 /* EmotionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B794102EDD6CBA00EC2137 /* EmotionType.swift */; };
+		46B794182EDD6CD100EC2137 /* EmojiDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B794142EDD6CD100EC2137 /* EmojiDisplayView.swift */; };
+		46B794192EDD6CD100EC2137 /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B794152EDD6CD100EC2137 /* PermissionView.swift */; };
+		46B7941A2EDD6CD100EC2137 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B794162EDD6CD100EC2137 /* SettingsView.swift */; };
+		46B7941D2EDD6CE400EC2137 /* EmotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B7941B2EDD6CE400EC2137 /* EmotionViewModel.swift */; };
+		46B794212EDD6CF600EC2137 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B7941E2EDD6CF500EC2137 /* Constants.swift */; };
+		46B794222EDD6CF600EC2137 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B7941F2EDD6CF500EC2137 /* PermissionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,14 @@
 		46B793FA2EDD622400EC2137 /* IOS_emoji_analyserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOS_emoji_analyserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46B793FE2EDD622400EC2137 /* IOS_emoji_analyserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_emoji_analyserUITests.swift; sourceTree = "<group>"; };
 		46B794002EDD622400EC2137 /* IOS_emoji_analyserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_emoji_analyserUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		46B7940F2EDD6CBA00EC2137 /* EmojiMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiMapper.swift; sourceTree = "<group>"; };
+		46B794102EDD6CBA00EC2137 /* EmotionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionType.swift; sourceTree = "<group>"; };
+		46B794142EDD6CD100EC2137 /* EmojiDisplayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiDisplayView.swift; sourceTree = "<group>"; };
+		46B794152EDD6CD100EC2137 /* PermissionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
+		46B794162EDD6CD100EC2137 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		46B7941B2EDD6CE400EC2137 /* EmotionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionViewModel.swift; sourceTree = "<group>"; };
+		46B7941E2EDD6CF500EC2137 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		46B7941F2EDD6CF500EC2137 /* PermissionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +110,10 @@
 		46B793E22EDD622200EC2137 /* IOS_emoji_analyser */ = {
 			isa = PBXGroup;
 			children = (
+				46B794202EDD6CF500EC2137 /* Utilities */,
+				46B7941C2EDD6CE400EC2137 /* ViewModels */,
+				46B794172EDD6CD100EC2137 /* Views */,
+				46B794112EDD6CBA00EC2137 /* Models */,
 				46B793E32EDD622200EC2137 /* IOS_emoji_analyserApp.swift */,
 				46B793E52EDD622200EC2137 /* ContentView.swift */,
 				46B793E72EDD622400EC2137 /* Assets.xcassets */,
@@ -125,6 +145,42 @@
 				46B794002EDD622400EC2137 /* IOS_emoji_analyserUITestsLaunchTests.swift */,
 			);
 			path = IOS_emoji_analyserUITests;
+			sourceTree = "<group>";
+		};
+		46B794112EDD6CBA00EC2137 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				46B7940F2EDD6CBA00EC2137 /* EmojiMapper.swift */,
+				46B794102EDD6CBA00EC2137 /* EmotionType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		46B794172EDD6CD100EC2137 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				46B794142EDD6CD100EC2137 /* EmojiDisplayView.swift */,
+				46B794152EDD6CD100EC2137 /* PermissionView.swift */,
+				46B794162EDD6CD100EC2137 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		46B7941C2EDD6CE400EC2137 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				46B7941B2EDD6CE400EC2137 /* EmotionViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		46B794202EDD6CF500EC2137 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				46B7941E2EDD6CF500EC2137 /* Constants.swift */,
+				46B7941F2EDD6CF500EC2137 /* PermissionManager.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +313,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46B7941D2EDD6CE400EC2137 /* EmotionViewModel.swift in Sources */,
+				46B7941A2EDD6CD100EC2137 /* SettingsView.swift in Sources */,
 				46B793E62EDD622200EC2137 /* ContentView.swift in Sources */,
+				46B794132EDD6CBA00EC2137 /* EmotionType.swift in Sources */,
+				46B794122EDD6CBA00EC2137 /* EmojiMapper.swift in Sources */,
+				46B794192EDD6CD100EC2137 /* PermissionView.swift in Sources */,
+				46B794222EDD6CF600EC2137 /* PermissionManager.swift in Sources */,
 				46B793E42EDD622200EC2137 /* IOS_emoji_analyserApp.swift in Sources */,
+				46B794182EDD6CD100EC2137 /* EmojiDisplayView.swift in Sources */,
+				46B794212EDD6CF600EC2137 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +488,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"IOS_emoji_analyser/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "需要麦克风权限";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "需要语音识别功能权限";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -452,6 +518,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"IOS_emoji_analyser/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "需要麦克风权限";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "需要语音识别功能权限";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
