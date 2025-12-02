@@ -99,3 +99,19 @@ iOSInjectionProject/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
+
+# 大文件 - 模型文件
+IOS_emoji_analyser/output/EmojiPredictor_int8.mlpackage/
+IOS_emoji_analyser/output/emoji_model/model.safetensors
+IOS_emoji_analyser/output/emoji_model/
+
+# 备份文件
+*.backup
+*.backup2
+*.broken
+
+# Xcode DerivedData
+DerivedData/
+
+# macOS
+.DS_Store
