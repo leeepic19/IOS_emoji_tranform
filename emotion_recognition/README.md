@@ -34,60 +34,44 @@
 ## 📁 项目结构
 
 ```
-├── IOS_emoji_analyser/        # iOS App 源代码
-├── IOS_emoji_analyser.xcodeproj
+├── EmojiTransformer/          # iOS App 代码
+│   └── ...
 ├── emotion_recognition/       # 模型训练代码
 │   ├── train.py              # 训练脚本
 │   ├── config.py             # 配置文件
-│   ├── dataset/              # 训练数据集
-│   ├── output/               # 导出配置文件
-│   ├── ios_integration/      # Swift 集成示例代码
-│   └── assets/               # 演示图片
+│   ├── dataset/              # 训练数据
+│   ├── output/               # 导出模型
+│   └── ios_integration/      # Swift 集成代码
 └── README.md
 ```
 
-## 🚀 快速开始
-
-### iOS App
-1. 用 Xcode 打开 `IOS_emoji_analyser.xcodeproj`
-2. 下载模型文件（见下方说明）
-3. 配置签名后运行
 
 ### 模型训练
+
 ```bash
 cd emotion_recognition
 pip install -r requirements.txt
 python train.py
 ```
 
-### 命令行测试
+## 快速开始
+没有上传完整模型，如需测试可以自行根据数据集微调
+
 ```bash
 python test_realtime.py
 ```
-模拟口语环境，识别10秒缓存区中最多20个字
+命令行测试模拟口语环境，只识别10秒缓存区中20个字
 
-## 📥 模型下载
-
-由于模型文件较大（98MB），未包含在仓库中。请自行训练或联系获取：
-- `EmojiPredictor_int8.mlpackage` - CoreML INT8 量化模型
-- 将模型文件添加到 Xcode 项目中
-
-## �� 模型信息
+## 📊 模型信息
 
 | 项目 | 详情 |
 |------|------|
 | 基座模型 | bert-base-chinese (102M) |
 | 量化方式 | INT8 |
 | 模型大小 | 98 MB |
-| 验证准确率 | 46.6%（大类准确率高） |
+| 验证准确率 | 46.6% |（部分emoji相似度高，大类准确率完全够）
 | 训练数据 | 546 条中文情绪文本 |
 
-## 🔧 技术栈
 
-- **iOS**: SwiftUI, Speech Framework, Core ML
-- **训练**: PyTorch, Transformers, bert-base-chinese
-- **导出**: CoreML Tools, INT8 量化
-
----
 
 <p align="center">Made with ❤️ for iOS</p>

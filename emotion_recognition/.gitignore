@@ -1,0 +1,22 @@
+# 大型模型文件
+output/emoji_model/
+output/*.onnx
+output/*.onnx.data
+output/*.mlpackage/
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
