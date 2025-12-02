@@ -31,11 +31,17 @@ class SpeechRecognitionService: NSObject, ObservableObject {
         recognizedText = ""
         error = nil
         
-        // 检查权限
+        // 检查语音识别是否可用
         guard speechRecognizer?.isAvailable == true else {
-            error = "语音识别不可用"
+            error = "语音识别服务不可用，请在真机上测试"
             return
         }
+        
+        // 检查是否在模拟器上
+        #if targetEnvironment(simulator)
+        error = "语音识别在模拟器上可能不稳定，建议在真机上测试。您可以点击测试按钮验证情绪识别功能。"
+        return
+        #endif
         
         do {
             try startRecognition()
@@ -45,6 +51,7 @@ class SpeechRecognitionService: NSObject, ObservableObject {
         }
     }
     
+
     /// 停止录音和识别
     func stopRecording() {
         guard isRecording else { return }
