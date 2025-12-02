@@ -11,33 +11,88 @@ struct EmojiDisplayView: View {
     @ObservedObject var viewModel: EmotionViewModel
     
     var body: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 24) {
+            // 模型状态指示器
+            modelStatusView
+            
             // 当前情绪Emoji显示
-            VStack(spacing: 20) {
+            VStack(spacing: 16) {
                 Text(viewModel.currentEmoji)
-                    .font(.system(size: Constants.emojiSize))
-                    .animation(.spring(response: 0.5, dampingFraction: 0.6), value: viewModel.currentEmoji)
-                    .scaleEffect(viewModel.isListening ? 1.0 : 0.9)
-                    .animation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true), value: viewModel.isListening)
+                    .font(.system(size: 120))
+                    .animation(.spring(response: 0.3, dampingFraction: 0.7), value: viewModel.currentEmoji)
+                    .scaleEffect(viewModel.isListening ? 1.1 : 1.0)
+                    .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: viewModel.isListening)
                 
-                Text(viewModel.currentEmotion.rawValue)
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.primary)
-                
-                if !viewModel.recognizedText.isEmpty {
-                    Text(viewModel.recognizedText)
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
-                        .lineLimit(3)
+                // 置信度显示
+                if viewModel.confidence > 0 {
+                    HStack(spacing: 8) {
+                        Text("置信度:")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        Text("\(Int(viewModel.confidence * 100))%")
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                            .foregroundColor(.blue)
+                    }
                 }
             }
             .padding()
             .frame(maxWidth: .infinity)
             .background(Color(.systemGray6))
             .cornerRadius(20)
+            
+            // 缓存文本显示（模型处理的文本）
+            if !viewModel.cachedText.isEmpty {
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack {
+                        Text("分析文本")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("\(viewModel.cachedText.count)/20字")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    Text(viewModel.cachedText)
+                        .font(.body)
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .background(Color(.systemGray5))
+                        .cornerRadius(12)
+                }
+                .padding(.horizontal)
+            }
+            
+            // 实时识别文本显示
+            if !viewModel.recognizedText.isEmpty && viewModel.isListening {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("实时识别")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    
+                    ScrollView {
+                        Text(viewModel.recognizedText)
+                            .font(.body)
+                            .foregroundColor(.primary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .frame(maxHeight: 80)
+                    .padding()
+                    .background(Color(.systemGray5))
+                    .cornerRadius(12)
+                }
+                .padding(.horizontal)
+            }
+            
+            // 错误信息显示
+            if let error = viewModel.errorMessage {
+                Text(error)
+                    .font(.caption)
+                    .foregroundColor(.red)
+                    .padding(.horizontal)
+            }
             
             // 控制按钮
             HStack(spacing: 20) {
@@ -48,7 +103,7 @@ struct EmojiDisplayView: View {
                         viewModel.startListening()
                     }
                 }) {
-                    HStack {
+                    HStack(spacing: 8) {
                         Image(systemName: viewModel.isListening ? "stop.circle.fill" : "mic.circle.fill")
                             .font(.title2)
                         Text(viewModel.isListening ? "停止监听" : "开始监听")
@@ -60,8 +115,9 @@ struct EmojiDisplayView: View {
                     .background(viewModel.isListening ? Color.red : Color.blue)
                     .cornerRadius(12)
                 }
+                .disabled(!viewModel.isModelReady)
                 
-                // 测试按钮（开发用）
+                // 测试按钮
                 Button(action: {
                     viewModel.simulateEmotion()
                 }) {
@@ -72,14 +128,24 @@ struct EmojiDisplayView: View {
                         .background(Color.green)
                         .cornerRadius(12)
                 }
+                .disabled(!viewModel.isModelReady)
             }
+            .padding(.horizontal)
             
             // 历史记录
             if !viewModel.emotionHistory.isEmpty {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("历史记录")
-                        .font(.headline)
-                        .padding(.horizontal)
+                    HStack {
+                        Text("历史记录")
+                            .font(.headline)
+                        Spacer()
+                        Button("清空") {
+                            viewModel.clearHistory()
+                        }
+                        .font(.caption)
+                        .foregroundColor(.red)
+                    }
+                    .padding(.horizontal)
                     
                     ScrollView {
                         VStack(spacing: 8) {
@@ -96,6 +162,36 @@ struct EmojiDisplayView: View {
         }
         .padding()
     }
+    
+    // MARK: - Subviews
+    
+    private var modelStatusView: some View {
+        HStack(spacing: 12) {
+            Circle()
+                .fill(viewModel.isModelReady ? Color.green : Color.orange)
+                .frame(width: 10, height: 10)
+            
+            Text(viewModel.isModelReady ? "模型已就绪" : "加载模型中...")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            
+            Spacer()
+            
+            if viewModel.isListening {
+                HStack(spacing: 4) {
+                    Circle()
+                        .fill(Color.red)
+                        .frame(width: 8, height: 8)
+                        .opacity(0.8)
+                        .animation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true), value: viewModel.isListening)
+                    Text("监听中")
+                        .font(.caption)
+                        .foregroundColor(.red)
+                }
+            }
+        }
+        .padding(.horizontal)
+    }
 }
 
 struct EmotionHistoryRow: View {
@@ -103,18 +199,14 @@ struct EmotionHistoryRow: View {
     
     var body: some View {
         HStack {
-            Text(record.emotion.emoji)
-                .font(.title3)
+            Text(record.emoji)
+                .font(.title2)
             
-            VStack(alignment: .leading, spacing: 2) {
-                Text(record.emotion.rawValue)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(record.text)
                     .font(.subheadline)
                     .fontWeight(.medium)
-                
-                Text(record.text)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                    .lineLimit(1)
+                    .lineLimit(2)
             }
             
             Spacer()

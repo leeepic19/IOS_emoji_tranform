@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		467B39F92EDEB227001ACEBD /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 467B39ED2EDEB227001ACEBD /* config.json */; };
+		467B39FA2EDEB227001ACEBD /* model.safetensors in Resources */ = {isa = PBXBuildFile; fileRef = 467B39EE2EDEB227001ACEBD /* model.safetensors */; };
+		467B39FB2EDEB227001ACEBD /* special_tokens_map.json in Resources */ = {isa = PBXBuildFile; fileRef = 467B39EF2EDEB227001ACEBD /* special_tokens_map.json */; };
+		467B39FC2EDEB227001ACEBD /* tokenizer_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 467B39F02EDEB227001ACEBD /* tokenizer_config.json */; };
+		467B39FD2EDEB227001ACEBD /* tokenizer.json in Resources */ = {isa = PBXBuildFile; fileRef = 467B39F12EDEB227001ACEBD /* tokenizer.json */; };
+		467B39FF2EDEB227001ACEBD /* emoji_map.json in Resources */ = {isa = PBXBuildFile; fileRef = 467B39F42EDEB227001ACEBD /* emoji_map.json */; };
+		467B3A002EDEB227001ACEBD /* EmojiPredictor_int8.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 467B39F52EDEB227001ACEBD /* EmojiPredictor_int8.mlpackage */; };
+		467B3A012EDEB227001ACEBD /* model_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 467B39F62EDEB227001ACEBD /* model_config.json */; };
+		467B3A022EDEB227001ACEBD /* vocab.txt in Resources */ = {isa = PBXBuildFile; fileRef = 467B39F72EDEB227001ACEBD /* vocab.txt */; };
+		467B3A072EDEB227001ACEBD /* EmojiPredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B3A032EDEB227001ACEBD /* EmojiPredictor.swift */; };
+		467B3A082EDEB227001ACEBD /* EmojiPredictorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B3A042EDEB227001ACEBD /* EmojiPredictorView.swift */; };
+		467B3A092EDEB227001ACEBD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 467B3A052EDEB227001ACEBD /* README.md */; };
+		467B3A0D2EDEB603001ACEBD /* EmojiPredictionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B3A0A2EDEB602001ACEBD /* EmojiPredictionService.swift */; };
+		467B3A0E2EDEB603001ACEBD /* SpeechRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B3A0B2EDEB602001ACEBD /* SpeechRecognitionService.swift */; };
 		46B793E42EDD622200EC2137 /* IOS_emoji_analyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B793E32EDD622200EC2137 /* IOS_emoji_analyserApp.swift */; };
 		46B793E62EDD622200EC2137 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B793E52EDD622200EC2137 /* ContentView.swift */; };
 		46B793E82EDD622400EC2137 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46B793E72EDD622400EC2137 /* Assets.xcassets */; };
@@ -42,6 +56,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		467B39ED2EDEB227001ACEBD /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		467B39EE2EDEB227001ACEBD /* model.safetensors */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.safetensors; sourceTree = "<group>"; };
+		467B39EF2EDEB227001ACEBD /* special_tokens_map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = special_tokens_map.json; sourceTree = "<group>"; };
+		467B39F02EDEB227001ACEBD /* tokenizer_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tokenizer_config.json; sourceTree = "<group>"; };
+		467B39F12EDEB227001ACEBD /* tokenizer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tokenizer.json; sourceTree = "<group>"; };
+		467B39F22EDEB227001ACEBD /* vocab.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vocab.txt; sourceTree = "<group>"; };
+		467B39F42EDEB227001ACEBD /* emoji_map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoji_map.json; sourceTree = "<group>"; };
+		467B39F52EDEB227001ACEBD /* EmojiPredictor_int8.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = EmojiPredictor_int8.mlpackage; sourceTree = "<group>"; };
+		467B39F62EDEB227001ACEBD /* model_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = model_config.json; sourceTree = "<group>"; };
+		467B39F72EDEB227001ACEBD /* vocab.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vocab.txt; sourceTree = "<group>"; };
+		467B3A032EDEB227001ACEBD /* EmojiPredictor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiPredictor.swift; sourceTree = "<group>"; };
+		467B3A042EDEB227001ACEBD /* EmojiPredictorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiPredictorView.swift; sourceTree = "<group>"; };
+		467B3A052EDEB227001ACEBD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		467B3A0A2EDEB602001ACEBD /* EmojiPredictionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiPredictionService.swift; sourceTree = "<group>"; };
+		467B3A0B2EDEB602001ACEBD /* SpeechRecognitionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionService.swift; sourceTree = "<group>"; };
 		46B793E02EDD622200EC2137 /* IOS_emoji_analyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_emoji_analyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46B793E32EDD622200EC2137 /* IOS_emoji_analyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_emoji_analyserApp.swift; sourceTree = "<group>"; };
 		46B793E52EDD622200EC2137 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -87,9 +116,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		467B39F32EDEB227001ACEBD /* emoji_model */ = {
+			isa = PBXGroup;
+			children = (
+				467B39ED2EDEB227001ACEBD /* config.json */,
+				467B39EE2EDEB227001ACEBD /* model.safetensors */,
+				467B39EF2EDEB227001ACEBD /* special_tokens_map.json */,
+				467B39F02EDEB227001ACEBD /* tokenizer_config.json */,
+				467B39F12EDEB227001ACEBD /* tokenizer.json */,
+				467B39F22EDEB227001ACEBD /* vocab.txt */,
+			);
+			path = emoji_model;
+			sourceTree = "<group>";
+		};
+		467B39F82EDEB227001ACEBD /* output */ = {
+			isa = PBXGroup;
+			children = (
+				467B39F32EDEB227001ACEBD /* emoji_model */,
+				467B39F42EDEB227001ACEBD /* emoji_map.json */,
+				467B39F52EDEB227001ACEBD /* EmojiPredictor_int8.mlpackage */,
+				467B39F62EDEB227001ACEBD /* model_config.json */,
+				467B39F72EDEB227001ACEBD /* vocab.txt */,
+			);
+			path = output;
+			sourceTree = "<group>";
+		};
+		467B3A062EDEB227001ACEBD /* ios_integration */ = {
+			isa = PBXGroup;
+			children = (
+				467B3A032EDEB227001ACEBD /* EmojiPredictor.swift */,
+				467B3A042EDEB227001ACEBD /* EmojiPredictorView.swift */,
+				467B3A052EDEB227001ACEBD /* README.md */,
+			);
+			path = ios_integration;
+			sourceTree = "<group>";
+		};
+		467B3A0C2EDEB602001ACEBD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				467B3A0A2EDEB602001ACEBD /* EmojiPredictionService.swift */,
+				467B3A0B2EDEB602001ACEBD /* SpeechRecognitionService.swift */,
+			);
+			name = Services;
+			path = IOS_emoji_analyser/Services;
+			sourceTree = "<group>";
+		};
 		46B793D72EDD622200EC2137 = {
 			isa = PBXGroup;
 			children = (
+				467B3A0C2EDEB602001ACEBD /* Services */,
 				46B793E22EDD622200EC2137 /* IOS_emoji_analyser */,
 				46B793F32EDD622400EC2137 /* IOS_emoji_analyserTests */,
 				46B793FD2EDD622400EC2137 /* IOS_emoji_analyserUITests */,
@@ -110,6 +185,8 @@
 		46B793E22EDD622200EC2137 /* IOS_emoji_analyser */ = {
 			isa = PBXGroup;
 			children = (
+				467B39F82EDEB227001ACEBD /* output */,
+				467B3A062EDEB227001ACEBD /* ios_integration */,
 				46B794202EDD6CF500EC2137 /* Utilities */,
 				46B7941C2EDD6CE400EC2137 /* ViewModels */,
 				46B794172EDD6CD100EC2137 /* Views */,
@@ -287,8 +364,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				467B39FB2EDEB227001ACEBD /* special_tokens_map.json in Resources */,
+				467B39FC2EDEB227001ACEBD /* tokenizer_config.json in Resources */,
+				467B39FF2EDEB227001ACEBD /* emoji_map.json in Resources */,
+				467B39FD2EDEB227001ACEBD /* tokenizer.json in Resources */,
+				467B3A012EDEB227001ACEBD /* model_config.json in Resources */,
+				467B3A092EDEB227001ACEBD /* README.md in Resources */,
 				46B793EB2EDD622400EC2137 /* Preview Assets.xcassets in Resources */,
+				467B39FA2EDEB227001ACEBD /* model.safetensors in Resources */,
 				46B793E82EDD622400EC2137 /* Assets.xcassets in Resources */,
+				467B3A022EDEB227001ACEBD /* vocab.txt in Resources */,
+				467B39F92EDEB227001ACEBD /* config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,13 +400,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				46B7941D2EDD6CE400EC2137 /* EmotionViewModel.swift in Sources */,
+				467B3A002EDEB227001ACEBD /* EmojiPredictor_int8.mlpackage in Sources */,
 				46B7941A2EDD6CD100EC2137 /* SettingsView.swift in Sources */,
 				46B793E62EDD622200EC2137 /* ContentView.swift in Sources */,
 				46B794132EDD6CBA00EC2137 /* EmotionType.swift in Sources */,
 				46B794122EDD6CBA00EC2137 /* EmojiMapper.swift in Sources */,
 				46B794192EDD6CD100EC2137 /* PermissionView.swift in Sources */,
+				467B3A0D2EDEB603001ACEBD /* EmojiPredictionService.swift in Sources */,
+				467B3A072EDEB227001ACEBD /* EmojiPredictor.swift in Sources */,
 				46B794222EDD6CF600EC2137 /* PermissionManager.swift in Sources */,
+				467B3A0E2EDEB603001ACEBD /* SpeechRecognitionService.swift in Sources */,
 				46B793E42EDD622200EC2137 /* IOS_emoji_analyserApp.swift in Sources */,
+				467B3A082EDEB227001ACEBD /* EmojiPredictorView.swift in Sources */,
 				46B794182EDD6CD100EC2137 /* EmojiDisplayView.swift in Sources */,
 				46B794212EDD6CF600EC2137 /* Constants.swift in Sources */,
 			);
@@ -484,8 +575,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IOS_emoji_analyser/Preview Content\"";
+				DEVELOPMENT_TEAM = Z663R2UZ7B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "需要麦克风权限";
@@ -514,8 +607,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IOS_emoji_analyser/Preview Content\"";
+				DEVELOPMENT_TEAM = Z663R2UZ7B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "需要麦克风权限";
@@ -544,6 +639,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
@@ -563,6 +659,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
@@ -581,6 +678,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -598,6 +696,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
