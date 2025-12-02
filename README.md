@@ -53,7 +53,17 @@
 2. 下载模型文件（见下方说明）
 3. 配置签名后运行
 
+### 训练环境
+
+操作系统 Ubuntu
+GPU RTX 4090
+python 3.x
+pytorch 2.9.1+cu128
+transformers HuggingFace
+CUDA 12.8
+
 ### 模型训练
+
 ```bash
 cd emotion_recognition
 pip install -r requirements.txt
