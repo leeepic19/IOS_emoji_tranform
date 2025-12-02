@@ -39,6 +39,7 @@ class EmojiPredictionService: ObservableObject {
     
     // MARK: - Model Loading
     private func loadModel() async {
+        print("📦 开始加载情绪预测模型...")
         do {
             // 加载 CoreML 模型
             let config = MLModelConfiguration()
@@ -51,6 +52,9 @@ class EmojiPredictionService: ObservableObject {
             // 加载 emoji 映射
             loadEmojiMap()
             
+            print("  - Emoji: \(emojiMap.count) 种")
+            print("  - 词表: \(vocab.count) tokens")
+            print("✅ 模型加载成功！")
             isReady = true
             print("✅ 情绪预测模型加载完成")
             

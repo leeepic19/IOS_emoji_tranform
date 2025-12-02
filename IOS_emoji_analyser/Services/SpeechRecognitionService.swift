@@ -33,21 +33,17 @@ class SpeechRecognitionService: NSObject, ObservableObject {
         
         // 检查语音识别是否可用
         guard speechRecognizer?.isAvailable == true else {
-            error = "语音识别服务不可用，请在真机上测试"
+            error = "语音识别服务不可用"
             return
         }
-        
-        // 检查是否在模拟器上
-        #if targetEnvironment(simulator)
-        error = "语音识别在模拟器上可能不稳定，建议在真机上测试。您可以点击测试按钮验证情绪识别功能。"
-        return
-        #endif
         
         do {
             try startRecognition()
             isRecording = true
+            print("✅ 语音识别已启动")
         } catch {
             self.error = "启动识别失败: \(error.localizedDescription)"
+            print("❌ 启动失败: \(error)")
         }
     }
     

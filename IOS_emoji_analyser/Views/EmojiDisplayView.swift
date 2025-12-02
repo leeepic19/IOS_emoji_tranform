@@ -180,29 +180,42 @@ struct EmojiDisplayView: View {
     // MARK: - Subviews
     
     private var modelStatusView: some View {
-        HStack(spacing: 12) {
-            Circle()
-                .fill(viewModel.isModelReady ? Color.green : Color.orange)
-                .frame(width: 10, height: 10)
-            
-            Text(viewModel.isModelReady ? "模型已就绪" : "加载模型中...")
-                .font(.caption)
-                .foregroundColor(.secondary)
-            
-            Spacer()
-            
-            if viewModel.isListening {
-                HStack(spacing: 4) {
-                    Circle()
-                        .fill(Color.red)
-                        .frame(width: 8, height: 8)
-                        .opacity(0.8)
-                        .animation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true), value: viewModel.isListening)
-                    Text("监听中")
-                        .font(.caption)
-                        .foregroundColor(.red)
+        VStack(spacing: 8) {
+            HStack(spacing: 12) {
+                Circle()
+                    .fill(viewModel.isModelReady ? Color.green : Color.orange)
+                    .frame(width: 10, height: 10)
+                
+                Text(viewModel.isModelReady ? "模型已就绪" : "加载模型中...")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                Spacer()
+                
+                if viewModel.isListening {
+                    HStack(spacing: 4) {
+                        Circle()
+                            .fill(Color.red)
+                            .frame(width: 8, height: 8)
+                            .opacity(0.8)
+                            .animation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true), value: viewModel.isListening)
+                        Text("监听中")
+                            .font(.caption)
+                            .foregroundColor(.red)
+                    }
                 }
             }
+            
+            // 调试信息（开发阶段）
+            #if DEBUG
+            HStack(spacing: 8) {
+                Text("权限:\(viewModel.permissionManager.allPermissionsGranted ? "✅" : "❌")")
+                Text("模型:\(viewModel.isModelReady ? "✅" : "⏳")")
+                Text("监听:\(viewModel.isListening ? "🔴" : "⚪️")")
+            }
+            .font(.caption2)
+            .foregroundColor(.secondary)
+            #endif
         }
         .padding(.horizontal)
     }

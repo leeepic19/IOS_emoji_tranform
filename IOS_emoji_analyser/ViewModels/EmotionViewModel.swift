@@ -90,13 +90,19 @@ class EmotionViewModel: ObservableObject {
     
     // MARK: - Control Methods
     func startListening() {
+        print("🔵 startListening 被调用")
+        print("  - 权限状态: \(permissionManager.allPermissionsGranted)")
+        print("  - 模型状态: \(isModelReady)")
+        
         guard permissionManager.allPermissionsGranted else {
             errorMessage = "需要麦克风和语音识别权限"
+            print("❌ 权限未授予")
             return
         }
         
         guard isModelReady else {
-            errorMessage = "模型尚未加载完成"
+            errorMessage = "模型尚未加载完成，请稍候..."
+            print("❌ 模型未就绪")
             return
         }
         
@@ -104,8 +110,9 @@ class EmotionViewModel: ObservableObject {
         clearCurrentSession()
         
         // 启动语音识别
+        print("🎤 启动语音识别服务...")
         speechService.startRecording()
-        print("✅ 开始实时监听和情绪分析...")
+        print("✅ 已调用 speechService.startRecording()")
     }
     
     func stopListening() {
