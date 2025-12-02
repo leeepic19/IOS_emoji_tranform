@@ -126,9 +126,18 @@ class SpeechRecognitionService: NSObject, ObservableObject {
                     self.onTextRecognized?(transcription)
                 }
                 
+                // 只在真正出错且不是正常结束时显示错误
                 if let error = error {
-                    self.error = "识别错误: \(error.localizedDescription)"
-                    self.stopRecording()
+                    let nsError = error as NSError
+                    // 忽略正常的识别结束错误（错误码 216 和 203）
+                    if nsError.code != 216 && nsError.code != 203 {
+                        print("⚠️ 语音识别错误: \(error.localizedDescription)")
+                        // 只在用户主动停止前显示严重错误
+                        if self.isRecording {
+                            self.error = "识别错误: \(error.localizedDescription)"
+                            self.stopRecording()
+                        }
+                    }
                 }
                 
                 // 识别完成
