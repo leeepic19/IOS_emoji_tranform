@@ -81,6 +81,14 @@ class EmojiPredictionService: ObservableObject {
             }
         }
         print("📚 词表加载完成，共 \(vocab.count) 个token")
+        
+        // 调试：打印几个关键 token
+        print("🔍 调试 - 关键token ID:")
+        print("  [CLS]: \(vocab["[CLS]"] ?? -1)")
+        print("  [SEP]: \(vocab["[SEP]"] ?? -1)")
+        print("  [UNK]: \(vocab["[UNK]"] ?? -1)")
+        print("  哈: \(vocab["哈"] ?? -1)")
+        print("  笑: \(vocab["笑"] ?? -1)")
     }
     
     private func loadEmojiMap() {
@@ -125,14 +133,12 @@ class EmojiPredictionService: ObservableObject {
             lastProcessedLength = currentLength
         } else if currentLength < lastProcessedLength {
             // 如果文本变短了（可能是语音识别修正），重新处理
-            // 清空缓存，重新添加所有字符
             charBuffer.removeAll()
             for char in filteredText {
                 charBuffer.append((char, now))
             }
             lastProcessedLength = currentLength
         }
-        // 如果长度相同，说明没有新字符，不做处理
         
         // 限制最大字数
         while charBuffer.count > maxChars {
@@ -154,7 +160,7 @@ class EmojiPredictionService: ObservableObject {
         cachedText = ""
         currentEmoji = "😐"
         confidence = 0.0
-        lastProcessedLength = 0  // 重置已处理长度
+        lastProcessedLength = 0
     }
     
     // MARK: - Prediction
@@ -165,6 +171,12 @@ class EmojiPredictionService: ObservableObject {
         
         // 分词
         let (inputIds, attentionMask) = tokenize(cachedText)
+        
+        // 调试：打印 tokenization 结果
+        print("🔍 调试 - 预测输入:")
+        print("  文本: \(cachedText)")
+        print("  input_ids[:15]: \(Array(inputIds[0..<15]))")
+        print("  attention_mask[:15]: \(Array(attentionMask[0..<15]))")
         
         do {
             // 创建输入
@@ -185,13 +197,18 @@ class EmojiPredictionService: ObservableObject {
             var maxIdx = 0
             var maxVal: Float = -Float.infinity
             
+            // 调试：打印 logits
+            var logitsArray: [Float] = []
             for i in 0..<17 {
                 let val = logits[[0, i as NSNumber]].floatValue
+                logitsArray.append(val)
                 if val > maxVal {
                     maxVal = val
                     maxIdx = i
                 }
             }
+            print("🔍 调试 - logits: \(logitsArray)")
+            print("🔍 调试 - maxIdx: \(maxIdx), maxVal: \(maxVal)")
             
             // Softmax 计算置信度
             var expSum: Float = 0
@@ -202,6 +219,8 @@ class EmojiPredictionService: ObservableObject {
             
             // 更新 emoji
             let newEmoji = emojiMap[maxIdx] ?? "❓"
+            print("🔍 调试 - 预测结果: \(newEmoji) (ID=\(maxIdx), 置信度=\(confidence * 100)%)")
+            
             if newEmoji != currentEmoji {
                 currentEmoji = newEmoji
             }
