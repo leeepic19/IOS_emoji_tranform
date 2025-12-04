@@ -22,6 +22,9 @@ class EmojiPredictionService: ObservableObject {
     private var emojiMap: [Int: String] = [:]
     private var charBuffer: [(char: Character, timestamp: Date)] = []
     
+    // 记录上一次处理的文本长度，用于计算增量
+    private var lastProcessedLength: Int = 0
+    
     // MARK: - Emoji Mapping
     private let defaultEmojiMap: [Int: String] = [
         0: "😂", 1: "😄", 2: "🥹", 3: "😅", 4: "😁",
@@ -98,13 +101,38 @@ class EmojiPredictionService: ObservableObject {
     }
     
     // MARK: - Text Input
+    
+    /// 处理语音识别的累积文本（增量处理）
+    /// - Parameter text: 语音识别返回的完整累积文本
     func processText(_ text: String) {
         let now = Date()
         
-        // 添加新字符
-        for char in text where !char.isWhitespace {
-            charBuffer.append((char, now))
+        // 过滤掉空白字符，得到纯文本
+        let filteredText = text.filter { !$0.isWhitespace }
+        let currentLength = filteredText.count
+        
+        // 只处理新增的字符（增量部分）
+        if currentLength > lastProcessedLength {
+            let startIndex = filteredText.index(filteredText.startIndex, offsetBy: lastProcessedLength)
+            let newChars = filteredText[startIndex...]
+            
+            // 只添加新增的字符到缓存
+            for char in newChars {
+                charBuffer.append((char, now))
+            }
+            
+            // 更新已处理长度
+            lastProcessedLength = currentLength
+        } else if currentLength < lastProcessedLength {
+            // 如果文本变短了（可能是语音识别修正），重新处理
+            // 清空缓存，重新添加所有字符
+            charBuffer.removeAll()
+            for char in filteredText {
+                charBuffer.append((char, now))
+            }
+            lastProcessedLength = currentLength
         }
+        // 如果长度相同，说明没有新字符，不做处理
         
         // 限制最大字数
         while charBuffer.count > maxChars {
@@ -126,6 +154,7 @@ class EmojiPredictionService: ObservableObject {
         cachedText = ""
         currentEmoji = "😐"
         confidence = 0.0
+        lastProcessedLength = 0  // 重置已处理长度
     }
     
     // MARK: - Prediction
