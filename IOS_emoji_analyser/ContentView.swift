@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel = EmotionViewModel()
+    @State private var showDebugView: Bool = false
     
     var body: some View {
         NavigationView {
@@ -20,10 +21,19 @@ struct ContentView: View {
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
                             ToolbarItem(placement: .navigationBarTrailing) {
-                                NavigationLink(destination: SettingsView()) {
-                                    Image(systemName: "gear")
+                                HStack(spacing: 16) {
+                                    Button(action: { showDebugView = true }) {
+                                        Image(systemName: "ant.fill")
+                                            .foregroundColor(.orange)
+                                    }
+                                    NavigationLink(destination: SettingsView()) {
+                                        Image(systemName: "gear")
+                                    }
                                 }
                             }
+                        }
+                        .sheet(isPresented: $showDebugView) {
+                            DebugTestView(viewModel: viewModel)
                         }
                 } else {
                     // 权限请求界面

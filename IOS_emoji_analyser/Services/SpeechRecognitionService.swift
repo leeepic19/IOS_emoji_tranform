@@ -76,6 +76,21 @@ class SpeechRecognitionService: NSObject, ObservableObject {
         recognitionTask?.cancel()
         recognitionTask = nil
         
+        // ⚠️ 重要：配置音频会话 - 使用 playAndRecord 以便在模拟器上工作
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(.playAndRecord, mode: .measurement, options: [.defaultToSpeaker, .allowBluetooth])
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            throw NSError(domain: "SpeechRecognition", code: -3, userInfo: [NSLocalizedDescriptionKey: "无法配置音频会话: \(error.localizedDescription)"])
+        }
+        
+        // 创建音频引擎 - 在配置音频会话之后
+        audioEngine = AVAudioEngine()
+        guard let audioEngine = audioEngine else {
+            throw NSError(domain: "SpeechRecognition", code: -2, userInfo: [NSLocalizedDescriptionKey: "无法创建音频引擎"])
+        }
+        
         // 创建识别请求
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         guard let recognitionRequest = recognitionRequest else {
@@ -90,17 +105,11 @@ class SpeechRecognitionService: NSObject, ObservableObject {
             recognitionRequest.requiresOnDeviceRecognition = false
         }
         
-        // 创建音频引擎
-        audioEngine = AVAudioEngine()
-        guard let audioEngine = audioEngine else {
-            throw NSError(domain: "SpeechRecognition", code: -2, userInfo: [NSLocalizedDescriptionKey: "无法创建音频引擎"])
-        }
-        
         let inputNode = audioEngine.inputNode
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
         
-        // 安装音频tap
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [weak self] buffer, _ in
+        // ⚠️ 重要：使用 nil 格式让系统自动选择最佳格式
+        // 这是在模拟器上最可靠的方式
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: nil) { [weak self] buffer, _ in
             self?.recognitionRequest?.append(buffer)
         }
         

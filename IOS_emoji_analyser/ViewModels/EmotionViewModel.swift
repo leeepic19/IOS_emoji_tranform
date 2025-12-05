@@ -19,6 +19,11 @@ class EmotionViewModel: ObservableObject {
     @Published var emotionHistory: [EmotionRecord] = []
     @Published var isModelReady: Bool = false
     @Published var errorMessage: String?
+    @Published var debugInfo: String = ""
+    @Published var detailedDebugLog: [String] = []  // 详细调试日志
+    @Published var lastPredictionDetails: EmojiPredictionService.PredictionDetails?  // 最近预测详情
+    @Published var vocabCount: Int = 0  // 词表大小
+    @Published var vocabStatus: String = ""  // 词表状态
     
     // MARK: - Services
     let permissionManager = PermissionManager()
@@ -76,6 +81,24 @@ class EmotionViewModel: ObservableObject {
         // 监听模型就绪状态
         predictionService.$isReady
             .assign(to: &$isModelReady)
+        
+        // 监听调试信息
+        predictionService.$debugInfo
+            .assign(to: &$debugInfo)
+        
+        // 监听详细调试日志
+        predictionService.$detailedDebugLog
+            .assign(to: &$detailedDebugLog)
+        
+        // 监听最近预测详情
+        predictionService.$lastPredictionDetails
+            .assign(to: &$lastPredictionDetails)
+        
+        // 监听词表状态
+        predictionService.$vocabCount
+            .assign(to: &$vocabCount)
+        predictionService.$vocabStatus
+            .assign(to: &$vocabStatus)
         
         // 监听错误
         Publishers.Merge(
@@ -149,6 +172,29 @@ class EmotionViewModel: ObservableObject {
         if emotionHistory.count > Constants.maxHistoryCount {
             emotionHistory.removeLast()
         }
+    }
+    
+    /// 直接测试 - 绕过缓存机制（供调试界面使用）
+    func directPredict(_ text: String) {
+        print("🔬 直接预测测试: \(text)")
+        predictionService.directPredict(text)
+    }
+    
+    /// 处理文本输入（供调试界面使用）
+    func processManualInput(_ text: String) {
+        print("⌨️ 调试输入: \(text)")
+        predictionService.processText(text)
+    }
+    
+    /// 清空缓存（供调试界面使用）
+    func clearManualInput() {
+        predictionService.clearCache()
+        print("🗑️ 清空输入缓存")
+    }
+    
+    func clearDebugLog() {
+        predictionService.clearDebugLog()
+        print("🗑️ 清空调试日志")
     }
     
     // MARK: - Test Methods
