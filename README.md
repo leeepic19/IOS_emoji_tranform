@@ -12,9 +12,12 @@
 ## 📸 演示效果
 
 <p align="center">
-  <img src="emotion_recognition/assets/demo1.jpg" width="45%" />
-  <img src="emotion_recognition/assets/demo2.jpg" width="45%" />
+  <img src="emotion_recognition/assets/demo1.jpg" width="30%" />
+  <img src="emotion_recognition/assets/demo2.jpg" width="30%" />
+  <img src="emotion_recognition/assets/WeChat7c12b7d382fb3b2514c13876c3a0c144.jpg" width="30%" />
 </p>
+
+> 最新版本新增 **Siri 风格沉浸式 UI**，支持三种交互式背景主题：流体光影、山水墨画、水面涟漪
 
 ## ✨ 功能特点
 
@@ -22,6 +25,10 @@
 - ⚡ **低延迟推理** - Neural Engine 加速，<50ms 响应
 - 📱 **轻量部署** - INT8 量化模型仅 98MB
 - 🎯 **17种情绪** - 覆盖常用表情场景
+- 🎨 **沉浸式 UI** - Siri 风格界面，支持三种交互式背景
+  - 🌈 **流体光影** - 渐变色光斑随触摸流动
+  - 🖌️ **山水墨画** - 中国风水墨画，支持视差交互
+  - 💧 **水面涟漪** - 动态水波纹效果
 
 ## 🎭 支持的 Emoji
 
